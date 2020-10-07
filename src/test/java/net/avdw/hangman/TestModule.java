@@ -9,7 +9,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-class MainModule extends AbstractModule {
+public class TestModule extends AbstractModule {
+
     @Override
     protected void configure() {
         bind(List.class).to(LinkedList.class);

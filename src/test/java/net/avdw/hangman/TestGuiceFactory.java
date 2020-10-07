@@ -6,7 +6,7 @@ import com.google.inject.Module;
 import picocli.CommandLine;
 
 /**
- * Wrapper to integrate guice with picocli.
+ * Test factory integrating picocli with guice. It also exposes reset functionality for CliTester.
  * <p>
  * The aim is to have one class that can be copied between projects.
  * The reason is that I hate dependency management on my own classes.
@@ -14,10 +14,17 @@ import picocli.CommandLine;
  *
  * @version 2020-10-07: Added javadoc
  */
-final class GuiceFactory implements CommandLine.IFactory {
-    private final Injector injector;
+public final class TestGuiceFactory implements CommandLine.IFactory {
+    private final Module module;
+    private Injector injector;
 
-    GuiceFactory(final Module module) {
+    TestGuiceFactory(final Module module) {
+        this.module = module;
+
+        reset();
+    }
+
+    public void reset() {
         injector = Guice.createInjector(module);
     }
 
